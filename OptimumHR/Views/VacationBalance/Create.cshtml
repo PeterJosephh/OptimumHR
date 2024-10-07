@@ -1,0 +1,64 @@
+﻿@model OptimumHR.Models.VacationBalance
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>VacationBalance</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input type="number" value="@DateTime.Now.Year" asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DaysUsed" class="control-label"></label>
+                <input asp-for="DaysUsed" class="form-control" />
+                <span asp-validation-for="DaysUsed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VacRuleId" class="control-label">Vacation Rule</label>
+                <select asp-for="VacRuleId" class="form-select" required>
+                    @foreach (var item in (List<VacRule>)ViewData["Rules"])
+                
+                {
+                    <option value=@item.Id>@item.Name</option>
+
+                }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>     
+                @if (ViewData["EmployeeId"] != null)
+                {
+                    <input type="number" readonly value=@ViewData["EmployeeId"] asp-for="EmployeeId" class="form-control" />
+                    <small class="text-success">Employee Name: @ViewData["EmployeeName"]</small>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+
+                }else
+                {
+                    <input type="number" asp-for="EmployeeId" class="form-control" />
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                }
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

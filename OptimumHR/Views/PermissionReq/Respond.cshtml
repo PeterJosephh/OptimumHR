@@ -1,0 +1,63 @@
+﻿@model dynamic
+
+
+<div class="row">
+    <div class="col-md-8 ms-auto me-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">Permission Requet(@Model.Id)</div>
+                    <div class="card-tools">
+
+                        <span class="badge badge-@Model.Color">@Model.StatusName</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label class="control-label">Employee Name</label>
+                        <a asp-action="Profile" asp-controller="Employee" asp-route-id="@Model.EmployeeId"><h3>@Model.EmployeeName</h3></a>
+                    </div>
+                    <div class="separator-dashed"></div>
+
+                    <div class="form-group col-4">
+                        <label class="control-label">Date</label>
+                        <input type="text" value="@Model.PerDate" class="form-control" readonly />
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="control-label">Start</label>
+                        <input type="text" value="@Model.PerStart" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="control-label">End</label>
+                        <input type="text" value="@Model.PerEnd" class="form-control" readonly />
+                    </div>
+                    <form method="post" asp-action="Respond">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <select class="form-select" name="StatusId">
+                                    @foreach (var item in (List<RequestStatus>)ViewData["RequestStatus"])
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" asp-for-id="@Model.Id" />
+                            <div class="col-md-4 d-flex align-items-center">
+                                <input type="submit" value="Respond" class="btn btn-primary ms-2" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</div>

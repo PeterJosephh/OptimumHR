@@ -1,0 +1,174 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@* 
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                
+                Request Id 
+
+            </th>
+            <th>
+                Request Date 
+
+            </th>
+            <th>
+                Request Type 
+
+            </th>
+            <th>
+                Employee Name
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @item.RequestId
+            </td>
+            <td>
+                    @item.RequestDAte
+
+            </td>
+            <td>
+                    @item.RequestType
+            </td>
+            <td>
+                    @item.EmployeeName
+            </td>
+                <td>
+                    <span class="btn-sm badge badge-@item.Color">@item.StatusName</span>
+                </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {/*  id=item.Id */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+
+
+    </tbody>
+</table>
+ *@
+
+
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-head-row">
+                <div class="card-title">Day Off Requests</div>
+            </div>
+        </div>
+        <div class="card-body">
+            @foreach (var item in Model)
+            {
+           <a asp-action="edit" asp-controller="DayOffRequest" asp-route-id="@item.RequestId"> <div class="d-flex">
+
+                <div class="avatar avatar-online">
+                        <span class="avatar-title rounded-circle border border-white bg-info">@item.EmployeeName.Substring(0, 1)</span>
+                </div>
+                <div class="flex-1 ms-3 pt-1">
+                    <h6 class="text-uppercase fw-bold">
+                            @item.EmployeeName
+                                <span class="text-@item.Color ps-3">@item.RequestType</span>
+                            
+                    </h6>
+                    <span class="text-muted">
+                                @item.RequestReason<strong> | From @item.RequestDAte</strong>
+                    </span>
+                </div>
+                        <div class="d-flex align-items-end flex-column pt-1">
+                            <span class="badge badge-@item.Color">@item.StatusName</span>
+                            <small class="text-muted">@item.RequestAddedDate</small>
+                        </div>
+            </div>
+                </a>
+            <div class="separator-dashed"></div>
+            }
+@*             <div class="d-flex">
+                <div class="avatar avatar-offline">
+                    <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
+                </div>
+                <div class="flex-1 ms-3 pt-1">
+                    <h6 class="text-uppercase fw-bold mb-1">
+                        Prabowo Widodo
+                        <span class="text-success ps-3">open</span>
+                    </h6>
+                    <span class="text-muted">I have some query regarding the license issue.</span>
+                </div>
+                <div class="float-end pt-1">
+                    <small class="text-muted">1 Day Ago</small>
+                </div>
+            </div>
+            <div class="separator-dashed"></div>
+            <div class="d-flex">
+                <div class="avatar avatar-away">
+                    <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
+                </div>
+                <div class="flex-1 ms-3 pt-1">
+                    <h6 class="text-uppercase fw-bold mb-1">
+                        Lee Chong Wei
+                        <span class="text-muted ps-3">closed</span>
+                    </h6>
+                    <span class="text-muted">
+                        Is there any update plan for RTL version near
+                        future?
+                    </span>
+                </div>
+                <div class="float-end pt-1">
+                    <small class="text-muted">2 Days Ago</small>
+                </div>
+            </div>
+            <div class="separator-dashed"></div>
+            <div class="d-flex">
+                <div class="avatar avatar-offline">
+                    <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
+                </div>
+                <div class="flex-1 ms-3 pt-1">
+                    <h6 class="text-uppercase fw-bold mb-1">
+                        Peter Parker
+                        <span class="text-success ps-3">open</span>
+                    </h6>
+                    <span class="text-muted">I have some query regarding the license issue.</span>
+                </div>
+                <div class="float-end pt-1">
+                    <small class="text-muted">2 Day Ago</small>
+                </div>
+            </div>
+            <div class="separator-dashed"></div>
+            <div class="d-flex">
+                <div class="avatar avatar-away">
+                    <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
+                </div>
+                <div class="flex-1 ms-3 pt-1">
+                    <h6 class="text-uppercase fw-bold mb-1">
+                        Logan Paul <span class="text-muted ps-3">closed</span>
+                    </h6>
+                    <span class="text-muted">
+                        Is there any update plan for RTL version near
+                        future?
+                    </span>
+                </div>
+                <div class="float-end pt-1">
+                    <small class="text-muted">2 Days Ago</small>
+                </div>
+            </div> *@
+        </div>
+    </div>
+</div>

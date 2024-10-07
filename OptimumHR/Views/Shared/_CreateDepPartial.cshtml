@@ -1,0 +1,45 @@
+﻿@model OptimumHR.Models.Department
+
+<h4>Department</h4>
+<hr />
+<div class="row">
+    <form onsubmit="return validateForm()" method="post" asp-action="create">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Name</label>
+                    <input class="form-control" asp-for="Name" id="inputField" type="text" placeholder="Name" />
+                        </div>
+                <small id="validationText" style="display: none" class="text-danger">Please enter a name</small>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                    <input class="form-control" asp-for="Description" id="addPosition" type="text" placeholder="Description" />
+                        </div>
+                    </div>
+                </div>
+            <div class="modal-footer border-0">
+            <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+        </form>
+    </div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    function validateForm() {
+        var inputField = document.getElementById("inputField").value;
+        if (inputField === "") {
+            var validationText = document.getElementById("validationText");
+            validationText.style.display = "block";
+            return false;
+        }
+        validationText.style.display = "none";
+        return true;
+    }
+</script>

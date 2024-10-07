@@ -1,0 +1,104 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="mt-5 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="float-start">
+                <h4 class=" card-title">
+                    Vacation Balances
+                </h4>
+                <small>Vacation Balances for all the Employees</small>
+            </div>
+            <a class="btn btn-primary float-end mr-5" asp-action="Create">Create New</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="basic-datatables"
+                       class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Year
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Used Days
+                            </th>
+                            <th>
+                                Total days
+                            </th>
+                            <th>
+                                Remaining
+                            </th>
+                            <th>
+                                Vacation Rule
+                            </th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Year
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Used Days
+                            </th>
+                            <th>
+                                Total days
+                            </th>
+                            <th>
+                                Remaining
+                            </th>
+                            <th>
+                                Vacation Rule
+                            </th>
+                            <th>Info</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Year
+                                </td>
+                                <td>
+                                    <a asp-action="profile" asp-controller="Employee" asp-route-id="@item.EmployeeId" >@item.EmployeeName</a>
+                                </td>
+                                <td>
+                                    @item.DaysUsed
+                                </td>
+                                <td>
+                                    @item.TotalDays
+                                </td>
+                                <td>
+                                    @item.Remain
+                                </td>
+                                <td>
+                                    <a asp-action="details" asp-controller="VacRule" asp-route-id="@item.RuleId">@item.RuleName</a>
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-icon btn-round btn-info">
+                                        <i class="fas fa-info"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

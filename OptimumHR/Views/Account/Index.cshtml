@@ -1,0 +1,53 @@
+﻿@model OptimumHR.ViewModel.LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/signin.css" asp-append-version="true" />
+
+</head>
+
+<body class="text-center">
+    <form method="post" asp-action="Login" class="form-signin">
+        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger validation-summary-errors"></div>
+        <input asp-for="UserName" class="form-control" placeholder="Username" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+        <input asp-for="PasswordHash" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <span asp-validation-for="PasswordHash" class="text-danger"></span>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <input class="btn btn-lg btn-primary btn-block" value="Sign in" type="submit">
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</body>
+
+</html>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

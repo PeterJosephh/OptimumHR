@@ -1,0 +1,188 @@
+﻿@model OptimumHR.ViewModel.NewEmployeeFormVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="~/assets/team-svgrepo-com.svg" alt="" width="72" height="57">
+            <h2>Add new Employee</h2>
+            <p class="lead">Use the form below to add a new employee to the system. Ensure all required fields are completed to successfully submit the form.</p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Personal Information</h4>
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label asp-for="Name" class="form-label">Full Name</label>
+                            <input asp-for="Name" type="text" class="form-control" required>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-6">
+                            <label asp-for="Nationality_ID" class="form-label">Nationality_ID</label>
+                            <input asp-for="Nationality_ID" type="text" class="form-control" required>
+                            <span asp-validation-for="Nationality_ID" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-4">
+                            <label class="form-label">Gender</label>
+                            <select asp-for="Gender" class="form-select" required>
+                                <option disabled selected>Choose...</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-4">
+                            <label asp-for="Religion" class="form-label">Religion <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="Religion" type="text" class="form-control" >
+                            <span asp-validation-for="Religion" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-4">
+                            <label asp-for="PhoneNumber" class="form-label">Phone Number <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control" >
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-6">
+                            <label asp-for="Email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="Email" type="email" class="form-control" >
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Scoial Status <span class="text-body-secondary">(Optional)</span></label>
+                            <select asp-for="SocialStatusId" class="form-select">
+                                <option disabled selected>Choose...</option>
+                             
+                                @foreach (var s in (List<SocialStatus>)ViewData["SocialStatus"])
+
+                                {
+                                    <option value="@s.Id">@s.Status</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SocialStatusId" class="text-danger">
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                            <input asp-for="DateOfBirth" class="form-control" required>
+                            <span asp-validation-for="DateOfBirth" class="text-danger">
+                            </span>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label asp-for="Acadamic_Qualification" class="form-label">Acadamic Qualification <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="Acadamic_Qualification" class="form-control" >
+                            <span asp-validation-for="Acadamic_Qualification" class="text-danger">
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="MilitryStatus" class="form-label">Militry Status <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="MilitryStatus" class="form-control">
+                            <span asp-validation-for="MilitryStatus" class="text-danger">
+                            </span>
+                        </div>
+                        <hr class="my-4">
+                        <h4 class="mb-3">Address</h4>
+                        <div class="col-md-4">
+                            <label asp-for="Address" class="form-label">Address <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="Address" class="form-control">
+                            <span asp-validation-for="Address" class="text-danger">
+                            </span>
+                        </div>
+                        <div class="col-md-8">
+                            <label asp-for="AddressLocationURL" class="form-label">Address Location Url <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="AddressLocationURL" class="form-control">
+                            <span asp-validation-for="AddressLocationURL" class="text-danger">
+                            </span>
+                        </div>
+                        <hr class="my-4">
+                        <h4 class="mb-3">Department</h4>
+                        <div class="col-md-4">
+                            <label asp-for="DepartmentId" class="form-label">Department</label>
+
+                            <select asp-for="DepartmentId" class="form-select" required>
+                                <option disabled selected>Choose...</option>
+                                @foreach (var dep in (List<Department>)ViewData["Departments"])
+                                {
+                                    <option value="@dep.Id">@dep.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="TitleId" class="form-label">Title</label>
+                            <select asp-for="TitleId" class="form-select">
+                                <option disabled selected>Choose...</option>
+                                @foreach (var t in (List<JobTitle>)ViewData["Titles"])
+
+                                {
+                                    <option value="@t.Id">@t.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="TitleId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Status" class="form-label">Hire Date <span class="text-body-secondary">(Optional)</span></label>
+                            <select asp-for="TitleId" class="form-select">
+                                <option disabled selected>Choose...</option>
+                            <option value="1">Active</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger">
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="HireDate" class="form-label">Hire Date <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="HireDate" class="form-control">
+                            <span asp-validation-for="HireDate" class="text-danger">
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Insurance_Number" class="form-label">Insurance Number <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="Insurance_Number" class="form-control" >
+                            <span asp-validation-for="Insurance_Number" class="text-danger">
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="BankAccountNumber" class="form-label">Bank Account Number <span class="text-body-secondary">(Optional)</span></label>
+                            <input asp-for="BankAccountNumber" class="form-control">
+                            <span asp-validation-for="BankAccountNumber" class="text-danger">
+                            </span>
+                        </div>
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" value="Create" type="submit">Add Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+        <p class="mb-1">&copy; 2017–2024 Optimum HR</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

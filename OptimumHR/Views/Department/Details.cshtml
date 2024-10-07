@@ -1,0 +1,88 @@
+﻿@model OptimumHR.Models.Department
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="mt-5 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Employees Of This Department</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="basic-datatables"
+                       class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Title</th>
+                            <th>Added By</th>
+                            <th>Added Date</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Title</th>
+                            <th>Added By</th>
+                            <th>Added Date</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @foreach (var item in (List<OptimumHR.ViewModel.ListEmplyeeVM>)ViewData["Employee"])
+                        {
+
+                            <tr>
+                                <td>@item.Id</td>
+
+                                <td>
+                                    <a asp-action="Profile" asp-controller="Employee" asp-route-id="@item.TitleId">
+                                    @item.Name </a>
+                                    </td>
+                                <td>@item.Status</td>
+                                <td>@item.Title</td>
+                                <td>@item.AddedBy</td>
+                                <td>@item.AddedDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

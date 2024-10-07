@@ -1,0 +1,120 @@
+﻿@model OptimumHR.Models.RequestStatus
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Status</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" disabled class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <div>
+                    <select asp-for="Color" id="colorSelect" class="form-select" required>
+                        <option value="count" data-badge="badge-count">Status</option>
+                        <option value="black" data-badge="badge-black">Default</option>
+                        <option value="primary" data-badge="badge-primary">Primary</option>
+                        <option value="info" data-badge="badge-info">Info</option>
+                        <option value="success" data-badge="badge-success">Success</option>
+                        <option value="warning" data-badge="badge-warning">Warning</option>
+                        <option value="danger" data-badge="badge-danger">Danger</option>
+                    </select>
+                    <div id="badgeDisplay" class="badge badge-black">Default</div>
+                    <span asp-validation-for="Color" class="text-black"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<style>
+    .form-select {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+
+    #badgeDisplay {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 5px 10px;
+    }
+
+    .badge-count {
+        background-color: gray;
+        color: white;
+    }
+
+    .badge-black {
+        background-color: black;
+        color: white;
+    }
+
+    .badge-primary {
+        background-color: blue;
+        color: white;
+    }
+
+    .badge-info {
+        background-color: cyan;
+        color: black;
+    }
+
+    .badge-success {
+        background-color: green;
+        color: white;
+    }
+
+    .badge-warning {
+        background-color: orange;
+        color: black;
+    }
+
+    .badge-danger {
+        background-color: red;
+        color: white;
+    }
+</style>
+
+<script>
+    document.getElementById('colorSelect').addEventListener('change', function () {
+        var selectedOption = this.options[this.selectedIndex];
+        var badgeClass = selectedOption.getAttribute('data-badge');
+        var badgeDisplay = document.getElementById('badgeDisplay');
+        badgeDisplay.className = 'badge ' + badgeClass;
+        badgeDisplay.textContent = selectedOption.textContent;
+    });
+</script>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
